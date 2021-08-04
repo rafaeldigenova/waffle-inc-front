@@ -1,0 +1,25 @@
+.login-screen {
+  align-items: center;
+  background-color: #FF784F;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+
+}
+
+.login-box {
+  background-color: #FFE19C;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  width: 600px;
+
+  span,
+  input {
+    margin-bottom: 10px;
+  }
+}

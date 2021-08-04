@@ -1,0 +1,67 @@
+<div>
+  <h5>Funcionários</h5>
+  <div class="funcionarios-content">
+    <div class="funcionarios col-md-4">
+      <div *ngIf="carregandoFuncionarios">
+        <i class="fa fa-spin fa-spinner"></i> Carregando Funcionários...
+      </div>
+      <div class="funcionario" *ngFor="let funcionario of funcionarios">
+        <span>{{funcionario.nome}} {{funcionario.sobrenome}}</span>
+        <div>
+          <span (click)="edit(funcionario)"><i class="fa fa-edit"></i></span>
+          <span *ngIf="!funcionario.deletando" (click)="delete(funcionario)"><i class="fa fa-trash"></i></span>
+          <span *ngIf="funcionario.deletando"><i class="fa fa-spin fa-spinner"></i></span>
+        </div>
+      </div>
+      <button class="btn btn-dark mt-4" (click)="adicionarFuncionario()">Adicionar Funcionário</button>
+    </div>
+    <div class="novo-funcionario col-md-8" *ngIf="funcionario">
+      <div class="mb-3">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="nome" [(ngModel)]="funcionario.nome">
+      </div>
+      <div class="mb-3">
+        <label for="sobrenome" class="form-label">Sobrenome</label>
+        <input type="text" class="form-control" id="sobrenome" [(ngModel)]="funcionario.sobrenome">
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" class="form-control" id="email" placeholder="...@waffle-inc.com" [(ngModel)]="funcionario.email">
+      </div>
+      <div class="mb-3">
+        <label for="numeroChapa" class="form-label">Numero da Chapa</label>
+        <input type="text" class="form-control" id="numeroChapa" [(ngModel)]="funcionario.numeroChapa">
+      </div>
+      <div class="mb-3">
+        <label for="senha" class="form-label">Senha</label>
+        <input type="password" class="form-control" id="senha" [(ngModel)]="funcionario.senha">
+      </div>
+      <div class="mb-3">
+        <label for="role" class="form-label">Role</label>
+        <select class="form-select" aria-label="Default select example" [(ngModel)]="funcionario.role">
+          <option value="Funcionario">Funcionário</option>
+          <option value="Admin">Admin</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="lider" class="form-label">Líder</label>
+        <select class="form-select" aria-label="Default select example" [(ngModel)]="funcionario.liderId">
+          <option value="0"></option>
+          <option *ngFor="let funcionarioLider of funcionarios" value="{{funcionarioLider.id}}">{{funcionarioLider.nome}}</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="lider" class="form-label">Telefones</label>
+        <div class="telefones">
+          <div *ngFor="let telefone of funcionario.telefones" class="telefone mb-2">
+            <input type="text" class="form-control mr-4" placeholder="Código de Área" [(ngModel)]="telefone.codigoDeArea">
+            <input type="text" class="form-control ml-4" placeholder="Número" [(ngModel)]="telefone.numero">
+          </div>
+        </div>
+        <button class="btn" (click)="adicionarTelefone()">Adicionar Telefone</button>
+      </div>
+      <button class="btn btn-dark" *ngIf="!salvando" (click)="salvar()">Salvar</button>
+      <button class="btn btn-dark" *ngIf="salvando"><i class="fa fa-spin fa-spinner"></i> Salvando...</button>
+    </div>
+  </div>
+</div>
