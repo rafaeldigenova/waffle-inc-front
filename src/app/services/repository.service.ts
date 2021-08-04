@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 export class RepositoryService {
 
   private accessToken: string = "";
-  // private urlBase: string = "https://game-engine-api.azurewebsites.net/api";
-  private urlBase: string = "https://localhost:44376";
+  private urlBase: string = "https://waffle-inc-api.azurewebsites.net";
+  // private urlBase: string = "https://localhost:44376";
 
   constructor(private httpClient: HttpClient) { }
 
